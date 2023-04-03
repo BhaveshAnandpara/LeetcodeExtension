@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "LeetCodeStreaksReminder",
+    "description": "Helps you reminding about the leetcode streaks",
+    "version": "1.0",
+    "permissions": ["activeTab" , "scripting"],
+    "content_scripts": [
+        {
+          "js": ["content.js"],
+          "matches": [
+            "https://*/*"
+          ]
+        }
+      ]
+}
