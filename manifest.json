@@ -1,15 +1,32 @@
 {
-    "manifest_version": 3,
-    "name": "LeetCodeStreaksReminder",
-    "description": "Helps you reminding about the leetcode streaks",
-    "version": "1.0",
-    "permissions": ["activeTab" , "scripting"],
-    "content_scripts": [
-        {
-          "js": ["content.js"],
-          "matches": [
-            "https://*/*"
-          ]
-        }
+  "manifest_version": 3,
+  "name": "LeetCodeStreaksReminder",
+  "description": "Helps you reminding about the leetcode streaks",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://*/*"
       ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        ".que.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "use_dynamic_url": true
+    }
+  ]
 }

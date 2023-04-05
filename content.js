@@ -15,13 +15,14 @@ async function main() {
         //Styling Containers
         box.style.display = "block"
         box.style.width = "400px"
-        box.style.backgroundColor = "rgb(66 ,66 ,66 , 0.6)"
+        box.style.backgroundColor = "rgb(66 ,66 ,66 , 0.8)"
         box.style.zIndex = "10000"
         box.style.position = "absolute"
         box.style.top = "10px"
         box.style.right = "10px"
         box.style.padding = "20px 10px"
         box.style.color = "#fff"
+        box.style.fontSize = "1.2rem"
 
         //Creating Title
         const title = document.createElement('h3')
@@ -43,11 +44,12 @@ async function main() {
         const status = document.createElement('div')
         status.textContent = "Not Submitted"
         status.style.textAlign = "center"
-        status.style.padding = "8px"
+        status.style.padding = "8px 0 8px"
         status.style.width = "100%"
         status.style.backgroundColor = "rgb(239, 71, 67 , 0.4)"
         status.style.color = "#fff"
         status.style.marginTop = "10px"
+
 
         const randomQueBtn = document.createElement('button')
         randomQueBtn.textContent = "Random Que"
@@ -59,6 +61,7 @@ async function main() {
         randomQueBtn.style.marginTop = "10px"
         randomQueBtn.style.border = "none"
         randomQueBtn.style.outline = "none"
+        randomQueBtn.style.fontSize = "1.2rem"
         randomQueBtn.onclick = ()=>{
             goToRandomQue()
         }
@@ -83,26 +86,18 @@ async function main() {
 
 async function goToRandomQue(){
 
-    console.log("clicked");
-
-    const que = await fetch('https://leetcode.com/api/problems/all/')
-    const res = await que.json()    
     
-    const arr = res.stat_status_pairs
-    let limit = 2600
+    const randomQueTitle = await fetch('http://localhost:8000/que/randomEasyQue')
+    const res = await randomQueTitle.json()
 
-    
-    while( true ){
-        
-        let item = arr[Math.floor( Math.random() * limit )]
-
-        if ( item.difficulty === 1 ){
-            console.log( item );
-            break
-        }
-    }
+    window.open(`https://leetcode.com/problems/${res}/` )
     
 
 
 }
+
+
+
+
+
 
