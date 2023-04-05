@@ -18,15 +18,11 @@
       ]
     }
   ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        ".que.js"
-      ],
-      "matches": [
-        "<all_urls>"
-      ],
-      "use_dynamic_url": true
-    }
-  ]
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"  
+  }
 }
