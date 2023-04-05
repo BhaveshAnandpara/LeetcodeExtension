@@ -23,11 +23,12 @@ async function main() {
         box.style.padding = "20px 10px"
         box.style.color = "#fff"
         box.style.fontSize = "1.2rem"
+        box.style.pointerEvents =  "none";
 
         //Creating Title
         const title = document.createElement('h3')
         title.textContent = "Leetcode Streaks Reminder"
-        
+
         //Fecthing cat images
         let cat = await fetch('https://api.thecatapi.com/v1/images/search')
         cat = await cat.json()
@@ -36,7 +37,7 @@ async function main() {
         const imgDiv = document.createElement('div')
         imgDiv.style.width = "100%"
         imgDiv.style.height = "180px"
-        imgDiv.style.backgroundImage = `url(${cat[0].url })`
+        imgDiv.style.backgroundImage = `url(${cat[0].url})`
         imgDiv.style.backgroundSize = "cover"
         imgDiv.style.overflow = 'hidden'
 
@@ -62,11 +63,9 @@ async function main() {
         randomQueBtn.style.border = "none"
         randomQueBtn.style.outline = "none"
         randomQueBtn.style.fontSize = "1.2rem"
-        randomQueBtn.onclick = ()=>{
+        randomQueBtn.onclick = () => {
             goToRandomQue()
         }
-
-
 
         // Append HTML to Body
         box.appendChild(title)
@@ -75,23 +74,18 @@ async function main() {
         box.appendChild(randomQueBtn)
         body.appendChild(box)
 
-        
-
-
 
     }
 
 }
 
+async function goToRandomQue() {
 
-async function goToRandomQue(){
 
-    
     const randomQueTitle = await fetch('http://localhost:8000/que/randomEasyQue')
     const res = await randomQueTitle.json()
 
-    window.open(`https://leetcode.com/problems/${res}/` )
-    
+    window.open(`https://leetcode.com/problems/${res}/`)
 
 
 }
