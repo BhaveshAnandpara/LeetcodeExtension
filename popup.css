@@ -7,12 +7,11 @@
   }
   
   body{
-  
     background-color: rgb(65, 65, 65);
     color: white;
     padding: 20px;
     width: 400px;
-  
+    height: fit-content;
   }
   
   #not-found-msg{
