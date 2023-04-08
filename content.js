@@ -1,4 +1,6 @@
 const body = document.querySelector("body");
+const proxy = 'https://leetcode-streaks.vercel.app/'
+
 
 //* main function that injects the HTML code into the webpage
 async function main() {
@@ -12,7 +14,7 @@ async function main() {
         box.id = "leetcodeBox"
 
         //Styling Containers
-        box.style.display = "block"
+        box.style.display = "none"
         box.style.width = "500px"
         box.style.height = "4rem"
         box.style.overflow = "hidden"
@@ -126,7 +128,7 @@ async function main() {
 async function goToRandomQue() {
 
 
-    const randomQueTitle = await fetch('http://localhost:8000/que/randomEasyQue').catch(() => { alert('cannot redirect to the Que') })
+    const randomQueTitle = await fetch(`${proxy}que/randomEasyQue`).catch(() => { alert('cannot redirect to the Que') })
     const res = await randomQueTitle.json()
 
     window.open(`https://leetcode.com/problems/${res}/`)

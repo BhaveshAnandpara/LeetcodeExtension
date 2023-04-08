@@ -60,8 +60,10 @@ async function setData() {
 
 async function userData(username) {
 
+    const serverProxy = 'https://leetcode-streaks.vercel.app/'
+
     // Get User Details
-    const response = await fetch('http://localhost:8000/user/getUserDetails', {
+    const response = await fetch(`${serverProxy}user/getUserDetails`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
