@@ -1,5 +1,7 @@
 // //* Call Main fucntion
 
+const proxy = 'https://leetcode-streaks.vercel.app/'
+
 let timeInterval = async () => { await chrome.storage.local.get('interval') }
 chrome.storage.local.set({ 'popup': false })
 
@@ -69,8 +71,9 @@ async function checkTime() {
     if ((now - originalTime) % interval == 0 && !(popup.popup)) {
 
         await chrome.storage.local.set({ 'popup': true })
-        console.log("Sending Msg");
 
+
+        console.log("sending msg");
         //* Sending the msg to content-scripts that show the reminder container
         chrome.windows.getCurrent(w => {
             chrome.tabs.query({ active: true, windowId: w.id }, tabs => {

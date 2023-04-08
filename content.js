@@ -1,7 +1,6 @@
 const body = document.querySelector("body");
 const proxy = 'https://leetcode-streaks.vercel.app/'
-
-
+var imgUrl, randomQue;
 
 
 //* main function that injects the HTML code into the webpage
@@ -74,22 +73,12 @@ async function main() {
         header.appendChild(dropIcon)
 
 
-
-
-        //Fecthing cat images
-
-        let dum = await fetch('https://cataas.com/cat?json=true& width=1000')
-        dum = await dum.json()
-        console.log(dum);
-
-        cat = `https://cataas.com/${dum.url}`
-
         //create div tag whom bg image will have cat image
         const imgDiv = document.createElement('div')
+        imgDiv.id = 'catImgDiv'
         imgDiv.style.width = "100%"
         imgDiv.style.height = "240px"
         imgDiv.style.marginTop = "20px"
-        imgDiv.style.backgroundImage = `url(${cat})`
         imgDiv.style.backgroundSize = "contain"
         imgDiv.style.backgroundRepeat = "no-repeat"
         imgDiv.style.backgroundPosition = "center"
@@ -144,7 +133,9 @@ async function goToRandomQue() {
     const randomQueTitle = await fetch(`${proxy}que/randomEasyQue`).catch(() => { alert('cannot redirect to the Que') })
     const res = await randomQueTitle.json()
 
-    window.open(`https://leetcode.com/problems/${res}/`)
+    randomQue = `https://leetcode.com/problems/${res}/`
+
+    window.open(randomQue)
 
 
 }
@@ -177,9 +168,36 @@ async function hide() {
 async function show() {
 
 
+
+    //Show the hidden Component
     const leetcodeBox = document.getElementById('leetcodeBox')
     leetcodeBox.style.transform = "translateX(0%)"
     leetcodeBox.style.display = "block"
+
+    //Fecthing cat images
+    let dum = await fetch('https://cataas.com/cat/gif?json=true& width=1000')
+    dum = await dum.json()
+
+    cat = `https://cataas.com/${dum.url}`
+
+    //Assigning Cat Images to bg
+    const imgDiv = document.getElementById('catImgDiv')
+    imgDiv.style.backgroundImage = `url(${cat})`
+
+
+    //* Sending notification through mail
+    let email = await chrome.storage.local.get('email')
+    email = email.email
+
+    await fetch(`${proxy}email/sendEmail`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, imgUrl : cat, randomQue })
+    })
+
+
 
 }
 
