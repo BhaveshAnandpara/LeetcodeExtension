@@ -1,8 +1,6 @@
 const body = document.querySelector("body");
 
-main()
-
-
+//* main function that injects the HTML code into the webpage
 async function main() {
 
     // `document.querySelector` may return null if the selector doesn't match anything.
@@ -10,12 +8,13 @@ async function main() {
 
         //Creating Container
         const box = document.createElement('div')
-        box.className = " box "
+        box.className = "box"
+        box.id = "leetcodeBox"
 
         //Styling Containers
         box.style.display = "block"
         box.style.width = "400px"
-        box.style.backgroundColor = "rgb(66 ,66 ,66 , 0.8)"
+        box.style.backgroundColor = "black"
         box.style.zIndex = "10000"
         box.style.position = "absolute"
         box.style.top = "10px"
@@ -23,7 +22,7 @@ async function main() {
         box.style.padding = "20px 10px"
         box.style.color = "#fff"
         box.style.fontSize = "1.2rem"
-        box.style.pointerEvents =  "none";
+        box.style.pointerEvents = "none";
 
         //Creating Title
         const title = document.createElement('h3')
@@ -52,6 +51,7 @@ async function main() {
         status.style.marginTop = "10px"
 
 
+        //creating and styling randomQueBtn Button
         const randomQueBtn = document.createElement('button')
         randomQueBtn.textContent = "Random Que"
         randomQueBtn.style.textAlign = "center"
@@ -63,6 +63,8 @@ async function main() {
         randomQueBtn.style.border = "none"
         randomQueBtn.style.outline = "none"
         randomQueBtn.style.fontSize = "1.2rem"
+        randomQueBtn.style.cursor = "pointer"
+        randomQueBtn.style.pointerEvents = 'auto'
         randomQueBtn.onclick = () => {
             goToRandomQue()
         }
@@ -79,14 +81,47 @@ async function main() {
 
 }
 
+//* Logic to redirect to random que
 async function goToRandomQue() {
 
 
-    const randomQueTitle = await fetch('http://localhost:8000/que/randomEasyQue')
+    const randomQueTitle = await fetch('http://localhost:8000/que/randomEasyQue').catch( ()=>{ alert('cannot redirect to the Que') }  )
     const res = await randomQueTitle.json()
 
     window.open(`https://leetcode.com/problems/${res}/`)
 
+
+}
+
+//* calling main function 
+main()
+
+//* listens to the message from background.js 
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+
+    if (msg.show) {
+        show()
+
+    }
+    if (!msg.show) {
+        hide()
+    }
+
+
+})
+
+async function hide() {
+
+    const leetcodeBox = document.getElementById('leetcodeBox')
+    leetcodeBox.style.display = "none"
+    
+}
+
+async function show() {
+    
+    
+    const leetcodeBox = document.getElementById('leetcodeBox')
+    leetcodeBox.style.display = "block"
 
 }
 
