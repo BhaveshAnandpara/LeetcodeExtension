@@ -21,7 +21,7 @@ async function main() {
         box.style.marginTop = "0rem !important"
         box.style.backgroundColor = "rgba(0,0,0,0.6)"
         box.style.zIndex = "10000"
-        box.style.position = "absolute"
+        box.style.position = "fixed"
         box.style.borderRadius = "8px"
         box.style.top = "10px"
         box.style.right = "10px"
@@ -42,7 +42,7 @@ async function main() {
 
         //Creating Title
         const title = document.createElement('h3')
-        title.textContent = "Leetcode Streaks Reminder"
+        title.innerHTML = "<p> &#10024; Leetcode Streaks Reminder<p/>"
         title.style.marginRight = "5px"
 
         //Creating dropdown
@@ -60,7 +60,7 @@ async function main() {
 
             if (box.style.height !== 'fit-content')
                 box.style.height = 'fit-content'
-            else{
+            else {
                 box.style.height = '4rem'
 
             }
@@ -70,17 +70,26 @@ async function main() {
         header.appendChild(title)
         header.appendChild(dropIcon)
 
+
+
+
         //Fecthing cat images
-        let cat = await fetch('https://api.thecatapi.com/v1/images/search')
-        cat = await cat.json()
+
+        let dum = await fetch('https://cataas.com/cat?json=true& width=1000')
+        dum = await dum.json()
+        console.log(dum);
+
+        cat = `https://cataas.com/${dum.url}`
 
         //create div tag whom bg image will have cat image
         const imgDiv = document.createElement('div')
         imgDiv.style.width = "100%"
-        imgDiv.style.height = "180px"
+        imgDiv.style.height = "240px"
         imgDiv.style.marginTop = "20px"
-        imgDiv.style.backgroundImage = `url(${cat[0].url})`
-        imgDiv.style.backgroundSize = "cover"
+        imgDiv.style.backgroundImage = `url(${cat})`
+        imgDiv.style.backgroundSize = "contain"
+        imgDiv.style.backgroundRepeat = "no-repeat"
+        imgDiv.style.backgroundPosition = "center"
         imgDiv.style.overflow = 'hidden'
 
         //create a status div
