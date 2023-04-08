@@ -2,6 +2,8 @@ const body = document.querySelector("body");
 const proxy = 'https://leetcode-streaks.vercel.app/'
 
 
+
+
 //* main function that injects the HTML code into the webpage
 async function main() {
 
@@ -13,7 +15,7 @@ async function main() {
         box.className = "box"
         box.id = "leetcodeBox"
 
-        //Styling Containers
+        //Styling Containersz
         box.style.display = "none"
         box.style.width = "500px"
         box.style.height = "4rem"
@@ -39,19 +41,20 @@ async function main() {
         header.style.display = "flex"
         header.style.alignItems = "center"
         header.style.flexDirection = "row"
+        header.style.marginBottom = "1rem"
 
         //Creating Title
         const title = document.createElement('h3')
         title.innerHTML = "<p> &#10024; Leetcode Streaks Reminder<p/>"
-        title.style.marginRight = "5px"
+        title.style.marginRight = "15px"
 
         //Creating dropdown
         const dropIcon = document.createElement('img')
         const IconSrc = await chrome.runtime.getURL("icons/chevron-down.svg")
         dropIcon.src = IconSrc
         dropIcon.alt = "icons"
-        dropIcon.style.width = "32px"
-        dropIcon.style.height = "32px"
+        dropIcon.style.width = "1rem"
+        dropIcon.style.height = "1rem"
         dropIcon.style.cursor = "pointer"
         dropIcon.style.pointerEvents = "auto"
         dropIcon.onclick = () => {
@@ -95,6 +98,7 @@ async function main() {
         //create a status div
         const status = document.createElement('div')
         status.textContent = "Not Submitted"
+        status.style.fontSize = "1rem"
         status.style.textAlign = "center"
         status.style.padding = "8px 0 8px"
         status.style.width = "100%"
@@ -114,7 +118,7 @@ async function main() {
         randomQueBtn.style.marginTop = "10px"
         randomQueBtn.style.border = "none"
         randomQueBtn.style.outline = "none"
-        randomQueBtn.style.fontSize = "1.2rem"
+        randomQueBtn.style.fontSize = "1rem"
         randomQueBtn.style.cursor = "pointer"
         randomQueBtn.style.pointerEvents = 'auto'
         randomQueBtn.onclick = () => {
