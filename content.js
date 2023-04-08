@@ -14,18 +14,18 @@ async function main() {
         //Styling Containers
         box.style.display = "block"
         box.style.width = "500px"
-        box.style.height = "5rem"
+        box.style.height = "4rem"
         box.style.overflow = "hidden"
         box.style.marginTop = "0rem !important"
-        box.style.backgroundColor = "black"
+        box.style.backgroundColor = "rgba(0,0,0,0.6)"
         box.style.zIndex = "10000"
         box.style.position = "absolute"
         box.style.borderRadius = "8px"
         box.style.top = "10px"
         box.style.right = "10px"
-        box.style.padding = "20px 20px"
+        box.style.padding = "1rem 20px"
         box.style.color = "#fff"
-        box.style.fontSize = "1.2rem"
+        box.style.fontSize = "1rem"
         box.style.pointerEvents = "none";
         box.style.transform = "translate(100%)";
         box.style.transition = "transform 1.2s ease-out"
@@ -59,7 +59,7 @@ async function main() {
             if (box.style.height !== 'fit-content')
                 box.style.height = 'fit-content'
             else{
-                box.style.height = '5rem'
+                box.style.height = '4rem'
 
             }
 
